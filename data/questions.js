@@ -15,28 +15,28 @@ The response includes an array of questions with the author, the and the questio
      * responses: 200, default
      * operationId: 
      */
-    get: {
-        200: function (req, res, callback) {
+  get: {
+    200: function (req, res, callback) {
             /**
              * Using mock data generator module.
              * Replace this by actual data for the api.
              */
-            Mockgen().responses({
-                path: '/questions',
-                operation: 'get',
-                response: '200'
-            }, callback);
-        },
-        default: function (req, res, callback) {
+      Mockgen().responses({
+        path: '/questions',
+        operation: 'get',
+        response: '200'
+      }, callback);
+    },
+    default: function (req, res, callback) {
             /**
              * Using mock data generator module.
              * Replace this by actual data for the api.
              */
-            Mockgen().responses({
-                path: '/questions',
-                operation: 'get',
-                response: 'default'
-            }, callback);
-        }
+      Mockgen().responses({
+        path: '/questions',
+        operation: 'get',
+        response: 'default'
+      }, callback);
     }
+  }
 };

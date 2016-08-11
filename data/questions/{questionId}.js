@@ -12,28 +12,28 @@ module.exports = {
      * responses: 404, default
      * operationId: 
      */
-    delete: {
-        404: function (req, res, callback) {
+  delete: {
+    404: function (req, res, callback) {
             /**
              * Using mock data generator module.
              * Replace this by actual data for the api.
              */
-            Mockgen().responses({
-                path: '/questions/{questionId}',
-                operation: 'delete',
-                response: '404'
-            }, callback);
-        },
-        default: function (req, res, callback) {
+      Mockgen().responses({
+        path: '/questions/{questionId}',
+        operation: 'delete',
+        response: '404'
+      }, callback);
+    },
+    default: function (req, res, callback) {
             /**
              * Using mock data generator module.
              * Replace this by actual data for the api.
              */
-            Mockgen().responses({
-                path: '/questions/{questionId}',
-                operation: 'delete',
-                response: 'default'
-            }, callback);
-        }
+      Mockgen().responses({
+        path: '/questions/{questionId}',
+        operation: 'delete',
+        response: 'default'
+      }, callback);
     }
+  }
 };

@@ -8,6 +8,6 @@ module.exports = function () {
     /**
      * Cached mock generator
      */
-    mockgen = mockgen || Swagmock(apiPath);
-    return mockgen;
+  mockgen = mockgen || Swagmock(apiPath);
+  return mockgen;
 };
