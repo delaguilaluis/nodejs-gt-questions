@@ -1,14 +1,14 @@
 {
-    "name": "nodejs-gt-demo",
+    "name": "nodejs-gt-questions",
     "description": "",
     "version": "1.0.0",
     "author": "Luis Del Águila <luisdelaguila@outlook.com>",
     "contributors": [],
     "repository": {
         "type": "git",
-        "url": "git://github.com/delaguilaluis/nodejs-gt-demo.git"
+        "url": "git://github.com/delaguilaluis/nodejs-gt-questions.git"
     },
-    "bugs": "http://github.com/delaguilaluis/nodejs-gt-demo/issues",
+    "bugs": "http://github.com/delaguilaluis/nodejs-gt-questions/issues",
     "publishConfig": {
         "registry": "https://registry.npmjs.org"
     },
