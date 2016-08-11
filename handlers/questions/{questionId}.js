@@ -1,5 +1,4 @@
 'use strict';
-var dataProvider = require('../../data/questions/{questionId}.js');
 /**
  * Operations on /questions/{questionId}
  */
@@ -16,14 +15,20 @@ module.exports = {
          * Get the data for response 404
          * For response `default` status 200 is used.
          */
-    var status = 404;
-    var provider = dataProvider['delete']['404'];
-    provider(req, res, function (err, data) {
-      if (err) {
-        next(err);
-        return;
-      }
-      res.status(status).send(data && data.responses);
-    });
+    const questionIdParameter = req.params && req.params.questionId;
+    if (questionIdParameter === undefined) {
+      return res.status(400).send('You must specify a question ID!');
+    }
+
+    const foundQuestionIndex = req.questions.findIndex(question => (
+      question.questionId === questionIdParameter
+    ));
+
+    if (foundQuestionIndex === -1) {
+      return res.status(404).send('Question not found');
+    }
+
+    req.questions.splice(foundQuestionIndex, 1);
+    return res.send('Question successfully deleted');
   }
 };

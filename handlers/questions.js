@@ -19,14 +19,25 @@ The response includes an array of questions with the author, the and the questio
          * Get the data for response 200
          * For response `default` status 200 is used.
          */
-    var status = 200;
-    var provider = dataProvider['get']['200'];
-    provider(req, res, function (err, data) {
-      if (err) {
-        next(err);
-        return;
+
+    // HTTP method overriden? Create a new question
+    if (req.query && req.query.method === 'post') {
+      if (req.query.body === undefined) {
+        return res.status(400).send('You must specify a question!');
       }
-      res.status(status).send(data && data.responses);
-    });
+
+      const question = {
+        questionId: req.getCurrentQuestion(),
+        body: req.query.body,
+        author: req.query.author || '',
+      };
+
+      // DO NOT TRY THIS AT HOME
+      req.questions.push(question);
+      return res.send(question);
+    }
+
+    // Return the existing questions instead
+    return res.send(req.questions);
   }
 };

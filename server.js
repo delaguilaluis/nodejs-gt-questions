@@ -15,6 +15,19 @@ App.use(BodyParser.urlencoded({
   extended: true
 }));
 
+// DON'T TRY THIS AT HOME
+const questions = [];
+let currentQuestion = 0;
+
+App.all('*', function(req, res, next) {
+  req.questions = questions;
+  req.getCurrentQuestion = () => {
+    currentQuestion += 1;
+    return currentQuestion;
+  };
+  next();
+});
+
 App.use(Swaggerize({
   api: Path.resolve('./config/swagger.yaml'),
   handlers: Path.resolve('./handlers')
