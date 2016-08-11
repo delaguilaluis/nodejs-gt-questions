@@ -5,7 +5,7 @@ info:
     Wanna make a question but raising your hand is so much hassle? Do it on your
     closest device!
   version: 1.0.0
-host: we.dont.know.yet.com
+host: nodejs-gt-questions.herokuapp.com
 schemes:
   - https
 basePath: /v1

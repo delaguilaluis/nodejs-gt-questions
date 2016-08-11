@@ -33,7 +33,7 @@ App.use(Swaggerize({
   handlers: Path.resolve('./handlers')
 }));
 
-Server.listen(8000, function () {
+Server.listen(process.env.PORT || 5000, function () {
   App.swagger.api.host = this.address().address + ':' + this.address().port;
     /* eslint-disable no-console */
   console.log('App running on %s:%d', this.address().address, this.address().port);
