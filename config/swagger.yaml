@@ -1,0 +1,105 @@
+swagger: '2.0'
+info:
+  title: Questions API
+  description: >-
+    Wanna make a question but raising your hand is so much hassle? Do it on your
+    closest device!
+  version: 1.0.0
+host: we.dont.know.yet.com
+schemes:
+  - https
+basePath: /v1
+produces:
+  - application/json
+paths:
+  /questions:
+    get:
+      summary: Retrieve all questions
+      description: >
+        The Questions endpoint returns information about the questions made
+
+        on the second Node.js Guatemala community session.
+
+        The response includes an array of questions with the author, the and the
+        question ID and the question itself.
+      parameters:
+        - name: limit
+          in: query
+          description: How many questions will be included in the response
+          required: false
+          type: number
+          format: integer
+          minimum: 0
+          default: 10
+        - name: method
+          in: query
+          description: The HTTP method to use
+          required: false
+          type: string
+          pattern: post
+        - name: question
+          in: query
+          description: The question itself
+          required: false
+          type: string
+        - name: author
+          in: query
+          description: The questioner
+          required: false
+          type: string
+      tags:
+        - Questions
+      responses:
+        '200':
+          description: An array of questions
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Question'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  '/questions/{questionId}':
+    delete:
+      summary: Delete question
+      description: Deletes the question with the specified ID
+      parameters:
+        - name: questionId
+          in: path
+          description: The ID of the question to delete
+          required: true
+          type: integer
+          minimum: 0
+      tags:
+        - Questions
+      responses:
+        '404':
+          description: Question not found
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Question:
+    type: object
+    properties:
+      question_id:
+        type: integer
+        description: Unique identifier representing a specific question
+      body:
+        type: string
+        description: The question itself
+      author:
+        type: string
+        description: The name of the questioner
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string
